@@ -1,1 +1,1 @@
-Scripts to predict sex using genomic information in Sockeye Salmon. See details in Costilla et al 2026 "Genomic prediction of sex in Sockeye salmon (Oncorhynchus nerka) to support all-female broodstock development in New Zealand (submitted).
+Scripts to predict sex using genomic information in Sockeye Salmon. See details in Costilla et al 2026 "Genomic prediction of sex in Sockeye salmon (Oncorhynchus nerka) to support all-female broodstock development in New Zealand" (submitted).
