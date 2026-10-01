@@ -1,6 +1,5 @@
 ###################################################
-#######	GBS qc and diagnostics in KGD	############# 
-####### Breed prediction              #############
+####### Breed prediction in KGD       #############
 # For reference-based GBS data in sockeye salmon  #
 # v1.0  Sep2026                                   #            
 # author: Roy Costilla                            #
@@ -17,7 +16,6 @@ require(lattice)
 require(dplyr)
 require(ggplot2)
 
-# input data
 #genofile="samples.2025.vcf.gz"; gform="VCF";myout="samples"  # input data
 source("~/KGD/GBS-Chip-Gmatrix.R")
 source("~/KGD/GBS-PopGen.R")
@@ -40,20 +38,7 @@ summary(sampdepth)
 summary(callrate)
 summary(snpdepth)
 
-#########       FST test      ###############
-mymeta=read.csv("../gender_prediction2_combined.csv")  #check original file from MCAS
-with(mymeta,table(cohort))
-
-# Sex same order as seqID
-mysub=mymeta$sex[match(seqID,mymeta$seqID)]
-table(mysub)
-system.time(Fst.sex <- Fst.GBS(populations=mysub, SNPtest = TRUE))
-summary(-log10(Fst.sex$pvalue))
-SNP_Names[which(-log10(Fst.sex$pvalue)>8)]
-str(Fst.sex)
-str(Fst.sex$pvalue)
-
-str(SNP_Names)
+# Reading Sex SNPs identified using 2024 cohort
 sexsnps=read.table("../../sex_snps_sockeye_2024.txt")[,1]
 str(sexsnps)
 sexsnps
@@ -70,7 +55,7 @@ genossex = data.frame(cbind(seqID=seqID,female=mydata$sex_num, genossex))
 head(genossex)
 str(genossex)
 
-#########    within sample breed prediction
+#########    within-sample breed prediction
 # Gender prediction using KGD function genderpred
 uM <- which(mydata$sex[match(seqID,mydata$seqID)]=="Male")
 uF <- which(mydata$sex[match(seqID,mydata$seqID)]=="Female")
